@@ -1,0 +1,51 @@
+/* CarePoint AI chatbot widget */
+.chatbot-launcher{position:fixed;right:22px;bottom:22px;z-index:60;width:56px;height:56px;border:none;border-radius:50%;background:var(--blue,#2876c8);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 26px rgba(40,118,200,.38);transition:transform .18s ease,box-shadow .18s ease}
+.chatbot-launcher:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 14px 30px rgba(40,118,200,.46)}
+.chatbot-launcher svg{width:26px;height:26px}
+.chatbot-launcher .chatbot-badge{position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:#38b58d;border:2px solid #fff}
+.chatbot-panel{position:fixed;right:22px;bottom:90px;z-index:61;width:min(370px,calc(100vw - 32px));height:min(540px,calc(100vh - 130px));background:#fff;border:1px solid var(--line,#e3eaf2);border-radius:18px;box-shadow:0 22px 60px rgba(18,54,90,.24);display:none;flex-direction:column;overflow:hidden}
+.chatbot-panel.open{display:flex;animation:chatbot-pop .18s ease}
+@keyframes chatbot-pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.chatbot-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(135deg,var(--navy,#12365a),var(--blue,#2876c8));color:#fff}
+.chatbot-head .chatbot-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none}
+.chatbot-head .chatbot-avatar svg{width:20px;height:20px}
+.chatbot-head b{display:block;font:700 14px Manrope,sans-serif;letter-spacing:-.02em}
+.chatbot-head small{display:block;font-size:11px;opacity:.78}
+.chatbot-head .chatbot-status{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block;margin-right:5px}
+.chatbot-close{background:none;border:none;color:#fff;cursor:pointer;font-size:20px;line-height:1;padding:4px 6px;border-radius:8px;opacity:.85}
+.chatbot-close:hover{opacity:1;background:rgba(255,255,255,.14)}
+.chatbot-menu{position:relative}
+.chatbot-expand{margin-left:auto;background:none;border:none;color:#fff;cursor:pointer;padding:5px 7px;border-radius:8px;display:grid;place-items:center;opacity:.85}
+.chatbot-expand:hover{opacity:1;background:rgba(255,255,255,.14)}
+.chatbot-expand svg{width:16px;height:16px}
+.chatbot-panel.expanded{width:min(780px,calc(100vw - 32px));height:min(880px,calc(100vh - 32px));bottom:16px;right:16px}
+.chatbot-menu-btn{background:none;border:none;color:#fff;cursor:pointer;padding:5px 7px;border-radius:8px;display:grid;place-items:center;opacity:.85}
+.chatbot-menu-btn:hover{opacity:1;background:rgba(255,255,255,.14)}
+.chatbot-menu-btn svg{width:18px;height:18px}
+.chatbot-menu-pop{display:none;position:absolute;right:0;top:calc(100% + 8px);min-width:160px;background:#fff;border:1px solid var(--line,#e3eaf2);border-radius:10px;box-shadow:0 12px 32px rgba(18,54,90,.22);padding:6px;z-index:5}
+.chatbot-menu-pop.open{display:block}
+.chatbot-menu-item{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;font:500 12.5px "DM Sans",sans-serif;color:var(--ink,#192c42);padding:8px 10px;border-radius:7px}
+.chatbot-menu-item:hover{background:var(--blue-light,#eaf3fc);color:var(--blue,#2876c8)}
+.chatbot-privacy{padding:9px 14px;background:var(--blue-light,#eaf3fc);color:var(--navy,#12365a);font-size:11px;line-height:1.5;border-bottom:1px solid var(--line,#e3eaf2)}
+.chatlog{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;background:var(--sky,#f4f8fd)}
+.chat-msg{max-width:82%;padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.55;word-wrap:break-word;white-space:pre-wrap}
+.chat-msg time{display:block;font-size:9.5px;opacity:.6;margin-top:4px}
+.chat-msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line,#e3eaf2);color:var(--ink,#192c42);border-bottom-left-radius:4px}
+.chat-msg.user{align-self:flex-end;background:var(--blue,#2876c8);color:#fff;border-bottom-right-radius:4px}
+.chat-msg.error{align-self:center;background:#fdecec;border:1px solid #f3c1c1;color:#9b2c2c;font-size:12px;border-radius:10px}
+.chat-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid var(--line,#e3eaf2);border-radius:14px;border-bottom-left-radius:4px}
+.chat-typing span{width:7px;height:7px;border-radius:50%;background:#a9bcd2;animation:chat-blink 1.2s infinite}
+.chat-typing span:nth-child(2){animation-delay:.2s}
+.chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes chat-blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.chat-suggestions{display:flex;flex-direction:column;gap:7px;align-self:flex-end;align-items:flex-end;margin:2px 0 0 auto;width:fit-content;max-width:100%;text-align:left}
+.chat-suggest{display:block;text-align:left;border:1px solid var(--line,#e3eaf2);background:#fff;color:var(--navy,#12365a);border-radius:999px;padding:8px 14px;font:600 12px "DM Sans",sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(20,52,86,.06);transition:background .15s,border-color .15s,color .15s}
+.chat-suggest:hover{background:var(--blue,#2876c8);border-color:var(--blue,#2876c8);color:#fff}
+.chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line,#e3eaf2);background:#fff}
+.chat-input-row input{flex:1;border:1px solid var(--line,#e3eaf2);border-radius:10px;padding:10px 12px;font:400 13px "DM Sans",sans-serif;color:var(--ink,#192c42);outline:none;min-width:0}
+.chat-input-row input:focus{border-color:var(--blue,#2876c8);box-shadow:0 0 0 3px rgba(40,118,200,.14)}
+.chat-input-row button{flex:none;width:42px;border:none;border-radius:10px;background:var(--blue,#2876c8);color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .15s}
+.chat-input-row button:hover{background:var(--navy,#12365a)}
+.chat-input-row button:disabled{background:#b9c6d6;cursor:not-allowed}
+.chat-input-row button svg{width:18px;height:18px}
+@media (max-width:480px){.chatbot-panel{right:10px;left:10px;bottom:80px;width:auto}.chatbot-launcher{right:14px;bottom:14px}.chatbot-panel.expanded{left:0;right:0;bottom:0;width:100vw;height:100vh;border-radius:0}}
